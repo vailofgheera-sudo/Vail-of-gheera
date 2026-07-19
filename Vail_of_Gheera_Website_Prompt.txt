@@ -1,0 +1,32 @@
+Create a premium, luxury, fully responsive one-page e-commerce website
+for my Islamic brand Vail of Gheera.
+
+Brand Identity: Vail of Gheera is an Islamic lifestyle brand dedicated
+to modesty (Haya), Gheera, and timeless Islamic identity. The design
+should be elegant, minimal, modern, and luxurious—not flashy. The
+website should inspire trust, professionalism, and high quality.
+
+Brand Colors: - Primary: Black (#000000) - Secondary: White (#FFFFFF) -
+Accent: Gold (#C9A227)
+
+Website Sections: Sticky Navigation, Hero, Featured Categories, Best
+Sellers, Why Choose Us, About, Customer Reviews, Instagram Gallery,
+Newsletter, Contact, Premium Footer.
+
+Tagline: “Wear Modesty. Live with Gheera.”
+
+Collections: - Embroidered Caps - Oversized T-Shirts - Hoodies - Tote
+Bags - Abayas - Jubbas - Mugs - Bottles - Islamic Wall Frames
+
+Interactive Features: Dark mode, mobile navigation, product search,
+category filter, shopping cart UI, wishlist, scroll-to-top button,
+animations, responsive design.
+
+Technical Requirements: Output the complete website as a single,
+self-contained HTML file. Include all HTML, CSS, and JavaScript in one
+code block. Do not split into multiple files. The website should work
+immediately after saving it as index.html.
+
+Do not leave placeholders. Build a complete production-quality website
+with polished UI, realistic placeholder images, clean commented code,
+and fully implemented sections.
