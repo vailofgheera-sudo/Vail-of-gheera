@@ -227,8 +227,8 @@ section{padding:100px 24px;position:relative}
 .mobile-menu{position:fixed;top:0;right:0;bottom:0;width:min(320px,100%);background:var(--bg);z-index:201;transform:translateX(100%);transition:transform var(--transition);padding:80px 32px 32px;display:flex;flex-direction:column;gap:20px}
 .mobile-menu.open{transform:translateX(0)}
 .mobile-menu a{font-family:'Playfair Display',serif;font-size:22px;color:var(--black);padding:10px 0;border-bottom:1px solid var(--border)}
-.toast{position:fixed;top:30px;left:50%;transform:translateX(-50%) translateY(-140%);padding:16px 28px;background:var(--black);color:var(--bg);border-radius:100px;font-size:14px;font-weight:500;box-shadow:var(--shadow-lg);z-index:300;transition:transform 0.4s ease}
-.toast.show{transform:translateX(-50%) translateY(0)}
+.toast{position:fixed;top:30px;left:50%;transform:translateX(-50%) translateY(-160%);opacity:0;visibility:hidden;pointer-events:none;padding:16px 28px;background:var(--black);color:var(--bg);border-radius:100px;font-size:14px;font-weight:500;box-shadow:var(--shadow-lg);z-index:300;transition:transform 0.4s ease,opacity 0.3s ease,visibility 0.3s ease}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;visibility:visible;pointer-events:auto}
 .reveal{opacity:0;transform:translateY(40px);transition:all 0.9s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:translateY(0)}
 /* ----- PRODUCT MODAL (DETAILED) ----- */
@@ -365,6 +365,23 @@ section{padding:70px 20px}
 .float-label{font-size:9px;letter-spacing:1.5px}
 .float-title{font-size:13px}
 .float-arrow{font-size:16px}
+}
+
+.cart-coupon{padding:0 20px 16px}
+.coupon-row{display:flex;gap:8px;align-items:center;width:100%}
+.cart-coupon #couponInput{flex:1 1 auto;min-width:0;width:100%;padding:11px 16px;border-radius:100px;border:1px solid var(--border);background:var(--card);font-family:inherit;font-size:13px;outline:none;color:var(--text)}
+.cart-coupon #applyCoupon{flex:0 0 auto;padding:11px 18px;border-radius:100px;background:var(--pink);color:#fff;font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;border:none}
+.cart-side{max-width:100vw;overflow-x:hidden}
+.cart-side *{max-width:100%}
+.cart-items,.cart-foot{box-sizing:border-box}
+.cart-foot{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+body.cart-open .customization-float{display:none}
+@media (max-width:420px){
+.cart-head{padding:18px 16px}
+.cart-items{padding:16px}
+.cart-coupon{padding:0 16px 14px}
+.cart-foot{padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
+.cart-coupon #applyCoupon{padding:11px 14px;font-size:12px}
 }
 </style>
 </head>
@@ -603,9 +620,9 @@ section{padding:70px 20px}
 </div>
 <div class="cart-items" id="cartItems"></div>
 <div class="cart-coupon">
-<div style="display:flex;gap:10px;">
-<input type="text" id="couponInput" placeholder="Enter coupon code" style="flex:1;padding:10px 16px;border-radius:100px;border:1px solid var(--border);background:var(--card);font-family:inherit;font-size:13px;outline:none;">
-<button id="applyCoupon" style="padding:10px 20px;border-radius:100px;background:var(--pink);color:#fff;font-size:13px;font-weight:500;white-space:nowrap;">Apply</button>
+<div class="coupon-row">
+<input type="text" id="couponInput" placeholder="Enter coupon code">
+<button id="applyCoupon">Apply</button>
 </div>
 <div id="couponMessage" style="font-size:12px;margin-top:6px;color:var(--muted);"></div>
 </div>
@@ -957,13 +974,13 @@ const cartItemsEl=document.getElementById('cartItems');
 const cartCountEl=document.getElementById('cartCount');
 const cartTotalEl=document.getElementById('cartTotal');
 
-function openCart(){cartSide.classList.add('open');cartOverlay.classList.add('open')}
-function closeCart(){cartSide.classList.remove('open');cartOverlay.classList.remove('open')}
+function openCart(){cartSide.classList.add('open');cartOverlay.classList.add('open');document.body.classList.add('cart-open')}
+function closeCart(){cartSide.classList.remove('open');cartOverlay.classList.remove('open');document.body.classList.remove('cart-open')}
 document.getElementById('cartToggle').addEventListener('click',openCart);
 document.getElementById('cartClose').addEventListener('click',closeCart);
 cartOverlay.addEventListener('click',closeCart);
 // ============ COUPON ============
-const coupons = {'WELCOME10': { discount: 10, type: 'percent' }};
+const coupons = {'GHEERA10': { discount: 10, type: 'percent' }};
 let appliedCoupon = null, couponDiscount = 0;
 document.getElementById('applyCoupon').addEventListener('click', function() {
 const input = document.getElementById('couponInput');
